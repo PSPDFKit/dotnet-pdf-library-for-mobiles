@@ -18,6 +18,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
 
 		<!-- Display name -->
 		<ApplicationTitle>dotnet-pdf-library-for-mobiles</ApplicationTitle>
@@ -51,10 +52,22 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-		<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="13.4.0" />
-		<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="13.4.0" />
-	</ItemGroup>
+    <Choose>
+        <When Condition="'$(TargetFramework)' == 'net8.0-android'">
+					<ItemGroup>
+						<PackageReference Include="PSPDFKit.dotnet.Android" Version="2024.1.2"/>
+					</ItemGroup>
+				</When>
+		</Choose>
+
+    <Choose>
+        <When Condition="'$(TargetFramework)' == 'net8.0-ios'">
+					<ItemGroup>
+						<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="13.4.0"/>
+						<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="13.4.0"/>
+					</ItemGroup>
+				</When>
+		</Choose>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
