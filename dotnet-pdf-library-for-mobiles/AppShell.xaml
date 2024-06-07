@@ -7,9 +7,22 @@
     Shell.FlyoutBehavior="Disabled"
     Title="dotnet_pdf_library_for_mobiles">
 
-    <ShellContent
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <FlyoutItem.Style>
+            <Style TargetType="ShellContent">
+                <Setter Property="Shell.NavBarIsVisible" Value="{OnIdiom false, Phone=true}" />
+            </Style>
+        </FlyoutItem.Style>
+
+        <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+        <ShellContent
+        Title="PSPDFKit PDF Viewer"
+        ContentTemplate="{DataTemplate local:PDFPage}"
+        Route="PDFView" />
+
+    </FlyoutItem>
 </Shell>
