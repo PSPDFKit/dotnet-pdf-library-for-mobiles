@@ -8,6 +8,11 @@ using Microsoft.Maui.Platform;
 using PSPDFKit.Configuration;
 using PSPDFKit.Configuration.Page;
 using PSPDFKit.UI;
+#elif IOS
+using Foundation;
+using PSPDFKit.Model;
+using PSPDFKit.UI;
+using UIKit;
 #endif
 
 namespace dotnet_pdf_library_for_mobiles
@@ -97,9 +102,57 @@ namespace dotnet_pdf_library_for_mobiles
 
 #elif IOS
 
-    public partial class PdfViewHandler : ContentViewHandler
+  public partial class PdfViewHandler : ViewHandler<PdfView, UIView>
+  {
+    private UIView _uiView;
+
+    public PdfViewHandler()
+        : base(PdfViewHandler._propertyMapper, null)
     {
     }
+
+    private static IPropertyMapper<PdfView, PdfViewHandler> _propertyMapper =
+        new PropertyMapper<PdfView, PdfViewHandler>(ViewHandler.ViewMapper);
+
+    protected override void ConnectHandler(UIView platformView)
+    {
+      base.ConnectHandler(platformView);
+      ((PdfView)VirtualView).LoadDocument += VirtualView_LoadDocument;
+    }
+
+    protected override void DisconnectHandler(UIView platformView)
+    {
+      base.DisconnectHandler(platformView);
+      ((PdfView)VirtualView).LoadDocument -= VirtualView_LoadDocument;
+    }
+
+    protected override UIView CreatePlatformView()
+    {
+      _uiView = new UIView();
+      return _uiView;
+    }
+
+    private async void VirtualView_LoadDocument(object? sender, EventArgs e)
+    {
+      // Update to use your document name.
+      var document = new PSPDFDocument(NSUrl.FromFilename("document.pdf"));
+
+      // The configuration object is optional and allows additional customization.
+      var configuration = PSPDFConfiguration.FromConfigurationBuilder((builder) =>
+      {
+        builder.PageMode = PSPDFPageMode.Single;
+        builder.PageTransition = PSPDFPageTransition.ScrollContinuous;
+        builder.ScrollDirection = PSPDFScrollDirection.Vertical;
+      });
+      var pdfViewController = new PSPDFViewController(document, configuration);
+
+      // Present the PDF view controller within a `UINavigationController` to show built-in toolbar buttons.
+      var navController = new UINavigationController(pdfViewController);
+
+                _uiView.Subviews?.ToList().ForEach(v => v.RemoveFromSuperview());
+      _uiView.AddSubview(navController.View);
+    }
+  }
 
 #endif
 }

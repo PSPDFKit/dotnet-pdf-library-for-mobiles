@@ -15,9 +15,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             }).ConfigureMauiHandlers(handlers =>
             {
-#if ANDROID
                 handlers.AddHandler(typeof(PdfView), typeof(PdfViewHandler));
-#endif
             });
 
 #if DEBUG
