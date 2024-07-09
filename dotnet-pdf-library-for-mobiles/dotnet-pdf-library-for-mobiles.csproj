@@ -69,6 +69,10 @@
 				</When>
 		</Choose>
 
+    <ItemGroup>
+      <None Remove="Resources\Images\search.svg" />
+    </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
@@ -77,9 +81,6 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="PDFPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="PdfView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
