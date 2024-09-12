@@ -55,7 +55,7 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-android'">
 					<ItemGroup>
-						<PackageReference Include="PSPDFKit.dotnet.Android" Version="2024.1.2" />
+						<PackageReference Include="PSPDFKit.dotnet.Android" Version="2024.5.1" />
 					</ItemGroup>
 				</When>
 		</Choose>
@@ -63,15 +63,11 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-ios'">
 					<ItemGroup>
-						<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="13.4.0" />
-						<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="13.4.0" />
+						<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="13.9.1" />
+						<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="13.9.1" />
 					</ItemGroup>
 				</When>
 		</Choose>
-
-    <ItemGroup>
-      <None Remove="Resources\Images\search.svg" />
-    </ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
