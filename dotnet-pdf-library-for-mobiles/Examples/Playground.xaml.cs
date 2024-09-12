@@ -8,13 +8,9 @@ namespace dotnet_pdf_library_for_mobiles.Examples;
 
 public partial class Playground : ContentPage
 {
-	public Playground()
-	{
-		InitializeComponent();
-#if ANDROID
-        PdfView.Handler = new PdfViewHandler();
-#elif IOS
-        PdfView.Handler = new PdfViewHandler();
-#endif
-    }
+        public Playground()
+        {
+                InitializeComponent();
+                PdfView.Handler = new PdfViewHandler();
+        }
 }
