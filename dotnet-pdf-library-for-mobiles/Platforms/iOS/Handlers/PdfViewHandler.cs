@@ -22,7 +22,7 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
         protected override void ConnectHandler(UIView platformView)
         {
             base.ConnectHandler(platformView);
-            LoadDocument();
+            Dispatcher.GetForCurrentThread().Dispatch(() => LoadDocument());
         }
 
         protected override void DisconnectHandler(UIView platformView)
@@ -36,7 +36,7 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
             return _uiView;
         }
 
-        private async void LoadDocument()
+        private void LoadDocument()
         {
             // Update to use your document name.
             var document = new PSPDFDocument(NSUrl.FromFilename("document.pdf"));

@@ -8,21 +8,17 @@ using Uri = Android.Net.Uri;
 using Microsoft.Maui.Controls.Platform;
 using Android.Hardware;
 using dotnet_pdf_library_for_mobiles.Platforms.Android.Listners;
-using PSPDFKit.UI.Search;
 using static AndroidX.Palette.Graphics.Palette;
 
 namespace dotnet_pdf_library_for_mobiles.Platforms.Android.Handlers
 {
     public partial class PdfViewHandler : ViewHandler<ContentView, FragmentContainerView>
     {
-        private PdfSearchViewModular _searchViewModular;
         private static IPropertyMapper<ContentView, PdfViewHandler> _propertyMapper =
             new PropertyMapper<ContentView, PdfViewHandler>(ViewHandler.ViewMapper);
 
-        internal PdfViewHandler(PdfSearchViewModular searchViewModular) : 
-            base(_propertyMapper)
+        internal PdfViewHandler() : base(_propertyMapper)
         {
-            _searchViewModular = searchViewModular;
         }
 
         protected override FragmentContainerView CreatePlatformView()
@@ -38,10 +34,6 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.Android.Handlers
             LoadDocument();
 
             var mauiActivity = Platform.CurrentActivity!;
-            var highlighter = new SearchResultHighlighter(mauiActivity);
-            PdfFragment.AddDrawableProvider(highlighter);
-
-            _searchViewModular.SetSearchViewListener(new CustomSimpleSearchViewListner(PdfFragment, highlighter));
         }
 
         protected override void DisconnectHandler(FragmentContainerView platformView)

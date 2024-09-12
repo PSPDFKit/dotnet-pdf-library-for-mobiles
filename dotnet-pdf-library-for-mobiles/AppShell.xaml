@@ -4,8 +4,22 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:dotnet_pdf_library_for_mobiles"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:examples="clr-namespace:dotnet_pdf_library_for_mobiles.Examples"
+    FlyoutBackdrop="#55111111" TabBarIsVisible="False" 
     Title="dotnet_pdf_library_for_mobiles">
+    <Shell.FlyoutFooter>
+        <HorizontalStackLayout HorizontalOptions="Start" Spacing="1" Padding="10">
+            <HorizontalStackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="TextColor" Value="DimGrey" />
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="HorizontalTextAlignment" Value="Center" />
+                </Style>
+            </HorizontalStackLayout.Resources>
+            <Label Text="PSPDFKit for MAUI" FontAttributes="Bold" />
+            <Label x:Name="AppVersion" />
+        </HorizontalStackLayout>
+    </Shell.FlyoutFooter>
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <FlyoutItem.Style>
@@ -15,14 +29,14 @@
         </FlyoutItem.Style>
 
         <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Playground"
+        ContentTemplate="{DataTemplate examples:Playground}"
+        Route="Playground" />
 
         <ShellContent
-        Title="PSPDFKit PDF Viewer"
-        ContentTemplate="{DataTemplate local:PDFPage}"
-        Route="PDFView" />
+        Title="About"
+        ContentTemplate="{DataTemplate local:About}"
+        Route="About" />
 
     </FlyoutItem>
 </Shell>

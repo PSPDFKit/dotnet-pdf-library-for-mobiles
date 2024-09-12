@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dotnet_pdf_library_for_mobiles.About">
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="About" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White"
+                   FontSize="18" FontAttributes="Bold" />
+        </Grid>
+    </Shell.TitleView>
+    <ScrollView>
+        <Border BackgroundColor="White" StrokeShape="RoundRectangle 8" MaximumWidthRequest="648"
+                HorizontalOptions="{OnIdiom 'Center', Phone='Fill'}" MinimumHeightRequest="{OnIdiom 700, Phone=''}"
+                Stroke="Transparent" Margin="10,64">
+            <Border.Shadow>
+                <Shadow Brush="Black" Offset="20,20" Radius="40" Opacity="0.2" />
+            </Border.Shadow>
+            <Grid RowDefinitions="64, Auto, *" Padding="16,0">
+                <Label Text="License" FontSize="16" VerticalOptions="Center" FontAttributes="Bold" Padding="4" />
+
+                <BoxView HeightRequest="1" Color="#f0f3f9" Margin="2,0" VerticalOptions="End"/>
+
+                <Label x:Name="LicenseText" Grid.Row="2" Margin="0,16" Padding="4,0" FontSize="14" />
+            </Grid>
+        </Border>
+    </ScrollView>
+</ContentPage>

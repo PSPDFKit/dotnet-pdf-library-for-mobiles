@@ -80,9 +80,22 @@
 </ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="PDFPage.xaml">
+	  <Compile Update="About.xaml.cs">
+	    <DependentUpon>About.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Playground.xaml.cs">
+	    <DependentUpon>Playground.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Playground.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Examples/" />
 	</ItemGroup>
 
 </Project>
