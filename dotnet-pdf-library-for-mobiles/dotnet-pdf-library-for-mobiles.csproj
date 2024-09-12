@@ -34,11 +34,6 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  	<CreatePackage>false</CreatePackage>
-	  	<EnableCodeSigning>false</EnableCodeSigning>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -60,7 +55,7 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-android'">
 					<ItemGroup>
-						<PackageReference Include="PSPDFKit.dotnet.Android" Version="2024.1.2"/>
+						<PackageReference Include="PSPDFKit.dotnet.Android" Version="2024.5.1" />
 					</ItemGroup>
 				</When>
 		</Choose>
@@ -68,8 +63,8 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-ios'">
 					<ItemGroup>
-						<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="13.4.0"/>
-						<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="13.4.0"/>
+						<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="13.9.1" />
+						<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="13.9.1" />
 					</ItemGroup>
 				</When>
 		</Choose>
@@ -79,5 +74,24 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 </ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="About.xaml.cs">
+	    <DependentUpon>About.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Playground.xaml.cs">
+	    <DependentUpon>Playground.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Playground.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Examples/" />
+	</ItemGroup>
 
 </Project>
