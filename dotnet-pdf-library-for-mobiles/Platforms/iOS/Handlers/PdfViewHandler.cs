@@ -52,6 +52,7 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
 
             // Present the PDF view controller within a `UINavigationController` to show built-in toolbar buttons.
             var navController = new UINavigationController(pdfViewController);
+            ViewController = navController;
 
             _uiView.Subviews?.ToList().ForEach(v => v.RemoveFromSuperview());
             _uiView.AddSubview(navController.View);
