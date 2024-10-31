@@ -17,16 +17,6 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
         private static IPropertyMapper<ContentView, PdfViewHandler> _propertyMapper =
             new PropertyMapper<ContentView, PdfViewHandler>(ViewHandler.ViewMapper);
 
-        protected override void ConnectHandler(UIView platformView)
-        {
-            base.ConnectHandler(platformView);
-        }
-
-        protected override void DisconnectHandler(UIView platformView)
-        {
-            base.DisconnectHandler(platformView);
-        }
-
         protected override UIView CreatePlatformView()
         {
             var document = new PSPDFDocument(NSUrl.FromFilename("document.pdf"));
