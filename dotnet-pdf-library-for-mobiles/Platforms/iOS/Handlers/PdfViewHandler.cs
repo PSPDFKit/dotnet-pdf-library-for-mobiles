@@ -9,8 +9,6 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
 
     public partial class PdfViewHandler : ViewHandler<ContentView, UIView>
     {
-        private UIView _uiView;
-
         public PdfViewHandler()
             : base(PdfViewHandler._propertyMapper, null)
         {
@@ -19,43 +17,27 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
         private static IPropertyMapper<ContentView, PdfViewHandler> _propertyMapper =
             new PropertyMapper<ContentView, PdfViewHandler>(ViewHandler.ViewMapper);
 
-        protected override void ConnectHandler(UIView platformView)
-        {
-            base.ConnectHandler(platformView);
-            Dispatcher.GetForCurrentThread().Dispatch(() => LoadDocument());
-        }
-
-        protected override void DisconnectHandler(UIView platformView)
-        {
-            base.DisconnectHandler(platformView);
-        }
-
         protected override UIView CreatePlatformView()
         {
-            _uiView = new UIView();
-            return _uiView;
-        }
-
-        private void LoadDocument()
-        {
-            // Update to use your document name.
             var document = new PSPDFDocument(NSUrl.FromFilename("document.pdf"));
+
+            var currentViewController = Platform.GetCurrentUIViewController();
 
             // The configuration object is optional and allows additional customization.
             var configuration = PSPDFConfiguration.FromConfigurationBuilder((builder) =>
             {
-                builder.PageMode = PSPDFPageMode.Single;
-                builder.PageTransition = PSPDFPageTransition.ScrollContinuous;
+                builder.PageMode = PSPDFPageMode.Automatic;
+                builder.PageTransition = PSPDFPageTransition.ScrollPerSpread;
                 builder.ScrollDirection = PSPDFScrollDirection.Vertical;
             });
             var pdfViewController = new PSPDFViewController(document, configuration);
 
             // Present the PDF view controller within a `UINavigationController` to show built-in toolbar buttons.
             var navController = new UINavigationController(pdfViewController);
-            ViewController = navController;
+            currentViewController.AddChildViewController(navController);
+            navController.DidMoveToParentViewController(currentViewController);
 
-            _uiView.Subviews?.ToList().ForEach(v => v.RemoveFromSuperview());
-            _uiView.AddSubview(navController.View);
+            return navController.View;
         }
     }
 
