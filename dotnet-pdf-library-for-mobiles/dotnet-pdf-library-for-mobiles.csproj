@@ -63,8 +63,8 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-ios'">
 					<ItemGroup>
-						<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="14.2.1" />
-						<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="14.2.1" />
+						<PackageReference Include="PSPDFKit.dotnet.iOS.Model" Version="14.4.0" />
+						<PackageReference Include="PSPDFKit.dotnet.iOS.UI" Version="14.4.0" />
 					</ItemGroup>
 				</When>
 		</Choose>
