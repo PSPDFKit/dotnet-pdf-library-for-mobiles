@@ -31,9 +31,7 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.Android.Handlers
         protected override void ConnectHandler(FragmentContainerView platformView)
         {
             base.ConnectHandler(platformView);
-            LoadDocument();
-
-            var mauiActivity = Platform.CurrentActivity!;
+            Dispatcher.GetForCurrentThread()!.Dispatch(() => LoadDocument());
         }
 
         protected override void DisconnectHandler(FragmentContainerView platformView)
