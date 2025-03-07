@@ -2,6 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="dotnet_pdf_library_for_mobiles.Examples.Playground"
-             Title="PSPDFKit PDF Viewer">
+             Title="Nutrient PDF Viewer">
         <ContentView x:Name="PdfView" Grid.Row="2" Grid.ColumnSpan="2"/>
 </ContentPage>

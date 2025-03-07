@@ -16,7 +16,8 @@
                     <Setter Property="HorizontalTextAlignment" Value="Center" />
                 </Style>
             </HorizontalStackLayout.Resources>
-            <Label Text="PSPDFKit for MAUI" FontAttributes="Bold" />
+            <Label Text="Nutrient .NET"
+                   FontAttributes="Bold"/>
             <Label x:Name="AppVersion" />
         </HorizontalStackLayout>
     </Shell.FlyoutFooter>
