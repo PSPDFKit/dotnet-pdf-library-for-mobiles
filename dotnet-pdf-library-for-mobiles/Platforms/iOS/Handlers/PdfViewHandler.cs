@@ -31,6 +31,7 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
                 builder.ScrollDirection = PSPDFScrollDirection.Vertical;
             });
             var pdfViewController = new PSPDFViewController(document, configuration);
+            pdfViewController.AnnotationToolbarController.AnnotationToolbar.ToolbarDelegate = new CustomAnnotationToolbarDelegate();
 
             // Present the PDF view controller within a `UINavigationController` to show built-in toolbar buttons.
             var navController = new UINavigationController(pdfViewController);

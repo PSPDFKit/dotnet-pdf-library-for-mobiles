@@ -55,7 +55,7 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-android'">
 					<ItemGroup>
-						<PackageReference Include="PSPDFKit.dotnet.Android" Version="2024.9.0" />
+						<PackageReference Include="`Nutrient.dotnet.Android" Version="10.0.2.1" />
 					</ItemGroup>
 				</When>
 		</Choose>
