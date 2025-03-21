@@ -55,7 +55,8 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-android'">
 					<ItemGroup>
-						<PackageReference Include="Nutrient.dotnet.Android" Version="10.1.1.0" />
+						<PackageReference Include="Nutrient.dotnet.Android" Version="10.1.1" />
+
 					</ItemGroup>
 				</When>
 		</Choose>
