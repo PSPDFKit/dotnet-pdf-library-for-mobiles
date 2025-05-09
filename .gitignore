@@ -2,6 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,xamarinstudio,csharp
 
 .DS_Store
+dotnet-pdf-library-for-mobiles.csproj.bak
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
