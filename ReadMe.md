@@ -1,4 +1,4 @@
-# Nutrient .NET for Mobile (iOS & Android)
+# Nutrient.NET for Mobiles (iOS & Android)
 
 #### Nutrient
 
