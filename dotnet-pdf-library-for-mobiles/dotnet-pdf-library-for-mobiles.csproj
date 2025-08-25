@@ -63,8 +63,8 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-ios'">
 					<ItemGroup>
-						<PackageReference Include="Nutrient.dotnet.iOS.Model" Version="14.6.0.1" />
-						<PackageReference Include="Nutrient.dotnet.iOS.UI" Version="14.6.0.1" />
+						<PackageReference Include="Nutrient.dotnet.iOS.Model" Version="14.11.0" />
+						<PackageReference Include="Nutrient.dotnet.iOS.UI" Version="14.11.0" />
 					</ItemGroup>
 				</When>
 		</Choose>
