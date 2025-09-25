@@ -55,7 +55,7 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-android'">
 					<ItemGroup>
-						<PackageReference Include="Nutrient.dotnet.Android" Version="10.4.1" />
+						<PackageReference Include="Nutrient.dotnet.Android" Version="10.7.0" />
 					</ItemGroup>
 				</When>
 		</Choose>
@@ -63,8 +63,8 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net8.0-ios'">
 					<ItemGroup>
-						<PackageReference Include="Nutrient.dotnet.iOS.Model" Version="26.0.0" />
-						<PackageReference Include="Nutrient.dotnet.iOS.UI" Version="26.0.0" />
+						<PackageReference Include="Nutrient.dotnet.iOS.Model" Version="14.6.0.1" />
+						<PackageReference Include="Nutrient.dotnet.iOS.UI" Version="14.6.0.1" />
 					</ItemGroup>
 				</When>
 		</Choose>
