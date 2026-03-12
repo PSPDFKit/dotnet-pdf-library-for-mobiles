@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:examples="clr-namespace:dotnet_pdf_library_for_mobiles.Examples"
+            x:Class="dotnet_pdf_library_for_mobiles.MainFlyoutPage">
+    <FlyoutPage.Flyout>
+        <ContentPage Title="&#9776;" BackgroundColor="#512BD4">
+            <ContentPage.Resources>
+                <Style x:Key="MenuLabel" TargetType="Label">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Padding" Value="16,10"/>
+                    <Setter Property="HorizontalOptions" Value="Start"/>
+                    <Setter Property="TextColor" Value="White"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                </Style>
+                <Style x:Key="SdkVersionLabel" TargetType="Label" BasedOn="{StaticResource MenuLabel}">
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontAttributes" Value="None"/>
+                    <Setter Property="Opacity" Value="0.9"/>
+                </Style>
+            </ContentPage.Resources>
+            <VerticalStackLayout Padding="10" Spacing="0">
+                <Label Text="Playground" Style="{StaticResource MenuLabel}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPlaygroundClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <BoxView HeightRequest="1" Color="#7B5DD4" HorizontalOptions="Fill"/>
+
+                <Label Text="File Picker Example" Style="{StaticResource MenuLabel}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnFilePickerClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <BoxView HeightRequest="1" Color="#7B5DD4" HorizontalOptions="Fill"/>
+
+                <Label Text="About" Style="{StaticResource MenuLabel}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAboutClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <BoxView HeightRequest="1" Color="#7B5DD4" HorizontalOptions="Fill"/>
+
+                <Label x:Name="SdkVersionLabel" Style="{StaticResource SdkVersionLabel}" VerticalOptions="EndAndExpand" Margin="16,10,16,24"/>
+            </VerticalStackLayout>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <examples:Playground />
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

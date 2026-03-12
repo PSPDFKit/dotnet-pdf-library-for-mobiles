@@ -6,18 +6,16 @@ using PSPDFKit.Configuration;
 using PSPDFKit.UI;
 using Uri = Android.Net.Uri;
 using Microsoft.Maui.Controls.Platform;
-using Android.Hardware;
-using dotnet_pdf_library_for_mobiles.Platforms.Android.Listners;
-using static AndroidX.Palette.Graphics.Palette;
+using dotnet_pdf_library_for_mobiles.Views;
 
 namespace dotnet_pdf_library_for_mobiles.Platforms.Android.Handlers
 {
-    public partial class PdfViewHandler : ViewHandler<ContentView, FragmentContainerView>
+    public partial class PdfViewHandler : ViewHandler<PdfView, FragmentContainerView>, IPdfViewHandler
     {
-        private static IPropertyMapper<ContentView, PdfViewHandler> _propertyMapper =
-            new PropertyMapper<ContentView, PdfViewHandler>(ViewHandler.ViewMapper);
+        private static IPropertyMapper<PdfView, PdfViewHandler> _propertyMapper =
+            new PropertyMapper<PdfView, PdfViewHandler>(ViewHandler.ViewMapper);
 
-        internal PdfViewHandler() : base(_propertyMapper)
+        public PdfViewHandler() : base(_propertyMapper)
         {
         }
 
@@ -28,24 +26,32 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.Android.Handlers
 
         public PdfFragment PdfFragment { get; private set; }
 
-        protected override void ConnectHandler(FragmentContainerView platformView)
+        public async Task LoadDocumentFromPath(string filePath)
         {
-            base.ConnectHandler(platformView);
-            Dispatcher.GetForCurrentThread()!.Dispatch(() => LoadDocument());
+            var jfile = new Java.IO.File(filePath);
+            await LoadDocumentAsync(jfile);
         }
 
-        protected override void DisconnectHandler(FragmentContainerView platformView)
+        public async Task LoadDocumentFromAssets(string assetName)
         {
-            base.DisconnectHandler(platformView);
+            var jfile = await GetFileFromAssets(assetName);
+            await LoadDocumentAsync(jfile);
         }
 
-        private async void LoadDocument()
+        private async Task LoadDocumentAsync(Java.IO.File jfile)
         {
-            // Get file
-            var jfile = await GetFileFromAssets("document.pdf");
-            var docUri = Uri.FromFile(jfile);
+            Uri docUri = Uri.FromFile(jfile);
 
-            var activity = await Platform.WaitForActivityAsync() as MauiAppCompatActivity;
+            // Get activity from PlatformView's context
+            var context = PlatformView.Context;
+
+            // Try to unwrap ContextWrapper to get the base context (which should be the Activity)
+            var activity = context as FragmentActivity;
+            if (activity == null && context is global::Android.Content.ContextWrapper contextWrapper)
+            {
+                activity = contextWrapper.BaseContext as FragmentActivity;
+            }
+
             // Prepare fragment
             var configuration = new PdfConfiguration.Builder()
                 .LayoutMode(PageLayoutMode.Single)
@@ -59,8 +65,8 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.Android.Handlers
             // Replace PdfView with actual fragment
             activity.SupportFragmentManager
                 .BeginTransaction()
-                .Add(PlatformView.Id, PdfFragment)
-                .Commit();
+                .Replace(PlatformView.Id, PdfFragment)
+                .CommitAllowingStateLoss();
         }
 
         private static async Task<Java.IO.File> GetFileFromAssets(string assetName)

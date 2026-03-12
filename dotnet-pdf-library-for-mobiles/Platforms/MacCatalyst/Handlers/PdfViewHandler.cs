@@ -5,8 +5,9 @@ using PSPDFKit.Model;
 using PSPDFKit.UI;
 using UIKit;
 
-namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
+namespace dotnet_pdf_library_for_mobiles.Platforms.MacCatalyst.Handlers
 {
+
     public partial class PdfViewHandler : ViewHandler<PdfView, UIView>, IPdfViewHandler
     {
         private PSPDFViewController? _pdfViewController;
@@ -51,12 +52,8 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
 
         public async Task LoadDocumentFromAssets(string assetName)
         {
-            var path = NSBundle.MainBundle.PathForResource(Path.GetFileNameWithoutExtension(assetName), Path.GetExtension(assetName).TrimStart('.'));
-            if (path != null)
-            {
-                var fileUrl = NSUrl.FromFilename(path);
-                await LoadDocumentFromPath(fileUrl);
-            }
+            var fileUrl = NSUrl.FromFilename("Contents/Resources/" + assetName);
+            await LoadDocumentFromPath(fileUrl);
         }
 
         public Task LoadDocumentFromPath(NSUrl fileUrl)
@@ -119,4 +116,5 @@ namespace dotnet_pdf_library_for_mobiles.Platforms.iOS.Handlers
             base.DisconnectHandler(platformView);
         }
     }
+
 }

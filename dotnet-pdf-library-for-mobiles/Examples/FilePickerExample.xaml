@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:dotnet_pdf_library_for_mobiles.Views"
+             x:Class="dotnet_pdf_library_for_mobiles.Examples.FilePickerExample"
+             Title="File Picker Example" SafeAreaEdges="All">
+        <Grid>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button x:Name="PickFileButton"
+                        Text="Select PDF File"
+                        Clicked="OnPickFileClicked"
+                        Margin="10"
+                        Grid.Row="0" />
+
+                <local:PdfView x:Name="pdfView" Grid.Row="1" />
+        </Grid>
+</ContentPage>

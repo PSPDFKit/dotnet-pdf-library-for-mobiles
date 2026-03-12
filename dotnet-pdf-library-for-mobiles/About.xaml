@@ -11,7 +11,7 @@
     <ScrollView>
         <Border BackgroundColor="White" StrokeShape="RoundRectangle 8" MaximumWidthRequest="648"
                 HorizontalOptions="{OnIdiom 'Center', Phone='Fill'}" MinimumHeightRequest="{OnIdiom 700, Phone=''}"
-                Stroke="Transparent" Margin="10,64">
+                Stroke="Transparent" Margin="10,0">
             <Border.Shadow>
                 <Shadow Brush="Black" Offset="20,20" Radius="40" Opacity="0.2" />
             </Border.Shadow>
