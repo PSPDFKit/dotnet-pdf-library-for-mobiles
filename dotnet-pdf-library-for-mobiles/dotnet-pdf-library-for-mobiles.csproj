@@ -56,7 +56,7 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net10.0-android'">
 					<ItemGroup>
-						<PackageReference Include="Nutrient.dotnet.Android" Version="11.5.1" />
+						<PackageReference Include="Nutrient.dotnet.Android" Version="11.1.1" />
 					</ItemGroup>
 				</When>
 		</Choose>
@@ -64,8 +64,8 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net10.0-ios'">
 					<ItemGroup>
-						<PackageReference Include="Nutrient.dotnet.iOS.Model" Version="26.5.0" />
-						<PackageReference Include="Nutrient.dotnet.iOS.UI" Version="26.5.0" />
+						<PackageReference Include="Nutrient.dotnet.iOS.Model" Version="26.10.0" />
+						<PackageReference Include="Nutrient.dotnet.iOS.UI" Version="26.10.0" />
 					</ItemGroup>
 				</When>
 		</Choose>
@@ -73,8 +73,8 @@
     <Choose>
         <When Condition="'$(TargetFramework)' == 'net10.0-maccatalyst'">
 					<ItemGroup>
-						<PackageReference Include="Nutrient.dotnet.MacCatalyst.Model" Version="26.5.0" />
-						<PackageReference Include="Nutrient.dotnet.MacCatalyst.UI" Version="26.5.0" />
+						<PackageReference Include="Nutrient.dotnet.MacCatalyst.Model" Version="26.10.0" />
+						<PackageReference Include="Nutrient.dotnet.MacCatalyst.UI" Version="26.10.0" />
 					</ItemGroup>
 				</When>
 		</Choose>
