@@ -30,8 +30,9 @@ To make sure this is fast, please use a work email and have someone from your co
 
 #### iOS requirements:
 
-- **.NET for iOS 17.2.8004/8.0.100 or higher +**
-- **.NET for MacCatalyst 17.2.8004/8.0.100 or higher +**
+- **Xcode 27**
+- **.NET 10 SDK with the iOS and MacCatalyst workloads 27.0 or higher**
+- `SupportedOSPlatformVersion` of **17.0** or higher for iOS and Mac Catalyst.
 
 ## Integrating in a standard MAUI project
 
